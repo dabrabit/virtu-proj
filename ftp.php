@@ -41,7 +41,8 @@ function ftp_get_filelist($con, $path){
 
 			$files = ftp_get_filelist($ssl_conn, $ftp_dir);
 			foreach($files as $file) {
-				echo "<a href=\"download.php?file=$file\">$file</a>";
+				$name = $file['name'];
+				echo "<a href=\"download.php?file=$name\">$name</a>";
 			}
 
 			ftp_close($conn_id);
