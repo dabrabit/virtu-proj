@@ -55,3 +55,14 @@ try {
 } catch (\PDOException $e) {
 	echo $e->getMessage();
 }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dabra</title>
+</head>
+<body>
+
+</body>
+</html>
