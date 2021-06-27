@@ -57,7 +57,7 @@ function ftp_get_filelist($con, $path){
 				echo "<a href=\"download.php?file=$name\">$name</a>";
 			}
 
-			ftp_close($conn_id);
+			ftp_close($ssl_conn);
 		 ?>
 	</div>
 </body>
