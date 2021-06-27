@@ -32,7 +32,7 @@ try {
 		if($user) { // Credentials succeeded
 			header("Location: ftp.php");
 		} else { // Credentials failed
-			header("Location: index.php");
+			//header("Location: index.php");
 		}
 	
 	} else if(!$userExists && $postType == "0"){// Registering a new user
@@ -50,7 +50,7 @@ try {
 		header("Location: ftp.php");
 	}
 	
-	header("Location: index.php");
+	//header("Location: index.php");
 
 } catch (\PDOException $e) {
 	echo $e->getMessage();
