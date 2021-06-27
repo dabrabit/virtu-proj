@@ -36,7 +36,12 @@ function ftp_get_filelist($con, $path){
 		<h3>Haz click para descargar</h3>
 			
 		<?php 
+
+			$ftp_user_name = "user1";
+			$ftp_user_pass = "testftp";
+
 			$ssl_conn = ftp_ssl_connect("ftp.dabra.mx", 21, 90);
+			$login_result = ftp_login($ssl_conn, $ftp_user_name, $ftp_user_pass);
 			$ftp_dir = ftp_pwd($ssl_conn);
 
 			$files = ftp_get_filelist($ssl_conn, $ftp_dir);
