@@ -9,7 +9,8 @@ $queryCredentials = 'SELECT * FROM users WHERE username = :username AND password
 $insertUser = 'INSERT INTO users(username, password) VALUES(:username, :password)';
 
 $pdo = require_once 'connect.php';
-
+var_dump($pdo");
+/*
 try {
 
 	$statement = $pdo->prepare($queryUserExists);
@@ -59,7 +60,7 @@ try {
 
 } catch (PDOException $e) {
 	echo $e->getMessage();
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
