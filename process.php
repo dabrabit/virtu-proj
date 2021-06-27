@@ -9,7 +9,7 @@ $queryCredentials = 'SELECT * FROM users WHERE username = :username AND password
 $insertUser = 'INSERT INTO users(username, password) VALUES(:username, :password)';
 
 try {
-	$pdo = require_once 'connect.php'
+	$pdo = require_once 'connect.php';
 
 	$statement = $pdo->prepare($queryUserExists);
 	$statement->bindParam(':username', $postUser, PDO::PARAM_STR);
@@ -32,7 +32,7 @@ try {
 		if($user) { // Credentials succeeded
 			header("Location: ftp.php");
 		} else { // Credentials failed
-			//header("Location: index.php");
+			header("Location: index.php");
 		}
 	
 	} else if(!$userExists && $postType == "0"){// Registering a new user
@@ -50,19 +50,9 @@ try {
 		header("Location: ftp.php");
 	}
 	
-	//header("Location: index.php");
+	header("Location: index.php");
 
 } catch (\PDOException $e) {
 	echo $e->getMessage();
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Dabra</title>
-</head>
-<body>
-
-</body>
-</html>
