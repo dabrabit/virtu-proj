@@ -1,3 +1,29 @@
+<?php 
+function ftp_get_filelist($con, $path){
+	$files = array();
+	$contents = ftp_rawlist ($con, $path);
+	$a = 0;
+
+	if(count($contents)){
+		foreach($contents as $line){
+			preg_match("#([drwx\-]+)([\s]+)([0-9]+)([\s]+)([0-9]+)([\s]+)([a-zA-Z0-9\.]+)([\s]+)([0-9]+)([\s]+)([a-zA-Z]+)([\s ]+)([0-9]+)([\s]+)([0-9]+):([0-9]+)([\s]+)([a-zA-Z0-9\.\-\_ ]+)#si", $line, $out);
+
+			if($out[3] != 1 && ($out[18] == "." || $out[18] == "..")){
+				// do nothing
+			} else {
+				$a++;
+				$files[$a]['rights'] = $out[1];
+				$files[$a]['type'] = $out[3] == 1 ? "file":"folder";
+				$files[$a]['owner_id'] = $out[5];
+				$files[$a]['owner'] = $out[7];
+				$files[$a]['date_modified'] = $out[11]." ".$out[13] . " ".$out[13].":".$out[16]."";
+				$files[$a]['name'] = $out[18];
+			}
+		}
+	}
+	return $files;
+}
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +33,21 @@
 </head>
 <body>
 	<div class="login-page">
-	<?php 
+		<h3>Haz click para descargar</h3>
+		<form action="download.php" method="POST">
+			
+		<?php 
+			$ssl_conn = ftp_ssl_connect("ftp.dabra.mx");
+			$ftp_dir = ftp_pwd($ssl_conn);
 
-		echo "Hello, world!";
+			$files = ftp_get_filelist($ssl_conn, $ftp_dir);
+			foreach($files as $file) {
+				echo "<a href=\"download.php?file=$file\">$file</a>";
+			}
 
-	 ?>
+			ftp_close($conn_id);
+		 ?>
+		</form>
 	</div>
 </body>
 </html>
