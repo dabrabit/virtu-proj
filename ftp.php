@@ -36,10 +36,15 @@ function ftp_get_filelist($con, $path){
 		<h3>Haz click para descargar</h3>
 			
 		<?php 
-			$ssl_conn = ftp_ssl_connect("ftp.dabra.mx");
+			$ssl_conn = ftp_ssl_connect("ftp.dabra.mx", 21, 90);
 			$ftp_dir = ftp_pwd($ssl_conn);
 
 			$files = ftp_get_filelist($ssl_conn, $ftp_dir);
+			
+			var_dump($ssl_conn);
+			var_dump($ftp_dir);
+			var_dump($files);
+
 			foreach($files as $file) {
 				$name = $file['name'];
 				echo "<a href=\"download.php?file=$name\">$name</a>";
