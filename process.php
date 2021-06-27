@@ -7,26 +7,10 @@ $postType = $_POST["action"]; // 0 = register, 1 = login
 $queryUserExists = 'SELECT * FROM users WHERE username = :username';
 $queryCredentials = 'SELECT * FROM users WHERE username = :username AND password = :password';
 $insertUser = 'INSERT INTO users(username, password) VALUES(:username, :password)';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Dabra</title>
-</head>
-<body>
-<?php 
 
-	echo $postUser;
-	echo $postPass;
-	echo $postType;
+$pdo = require_once 'connect.php';
 
- ?>
-</body>
-</html>
-/*
 try {
-	$pdo = require_once 'connect.php';
 
 	$statement = $pdo->prepare($queryUserExists);
 	$statement->bindParam(':username', $postUser, PDO::PARAM_STR);
@@ -47,9 +31,11 @@ try {
 		$user = $statement->fetch(PDO::FETCH_ASSOC);
 
 		if($user) { // Credentials succeeded
-			header("Location: ftp.php");
+			header("Location: ftp.php", true, 301);
+			exit();
 		} else { // Credentials failed
-			header("Location: index.php");
+			header("Location: index.php", true, 301);
+			exit();
 		}
 	
 	} else if(!$userExists && $postType == "0"){// Registering a new user
@@ -64,12 +50,23 @@ try {
 
 		$user_id = $pdo->lastInsertId();
 
-		header("Location: ftp.php");
+		header("Location: ftp.php", true, 301);
+		exit();
 	}
 	
-	header("Location: index.php");
+	header("Location: index.php", true, 301);
+	exit();
 
-} catch (\PDOException $e) {
+} catch (PDOException $e) {
 	echo $e->getMessage();
 }
-*/
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dabra</title>
+</head>
+<body>
+</body>
+</html>
