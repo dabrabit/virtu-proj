@@ -7,7 +7,24 @@ $postType = $_POST["action"]; // 0 = register, 1 = login
 $queryUserExists = 'SELECT * FROM users WHERE username = :username';
 $queryCredentials = 'SELECT * FROM users WHERE username = :username AND password = :password';
 $insertUser = 'INSERT INTO users(username, password) VALUES(:username, :password)';
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dabra</title>
+</head>
+<body>
+<?php 
 
+	echo $postUser;
+	echo $postPass;
+	echo $postType;
+
+ ?>
+</body>
+</html>
+/*
 try {
 	$pdo = require_once 'connect.php';
 
@@ -55,4 +72,4 @@ try {
 } catch (\PDOException $e) {
 	echo $e->getMessage();
 }
-?>
+*/
