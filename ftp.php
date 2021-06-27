@@ -34,7 +34,6 @@ function ftp_get_filelist($con, $path){
 <body>
 	<div class="login-page">
 		<h3>Haz click para descargar</h3>
-		<form action="download.php" method="POST">
 			
 		<?php 
 			$ssl_conn = ftp_ssl_connect("ftp.dabra.mx");
@@ -47,7 +46,6 @@ function ftp_get_filelist($con, $path){
 
 			ftp_close($conn_id);
 		 ?>
-		</form>
 	</div>
 </body>
 </html>
