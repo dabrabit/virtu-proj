@@ -1,6 +1,6 @@
 <?php 
 
-$host = '192.168.100.248';
+$host = 'mysql.dabra.mx';
 $db = 'virtu';
 $user = 'root'
 $pass = '';
