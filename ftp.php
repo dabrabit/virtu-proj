@@ -45,12 +45,6 @@ function ftp_get_filelist($con, $path){
 			$ftp_dir = ftp_pwd($ssl_conn);
 
 			$files = ftp_get_filelist($ssl_conn, $ftp_dir);
-			
-			var_dump($ssl_conn);
-			echo "<br>";
-			var_dump($ftp_dir);
-			echo "<br>";
-			var_dump($files);
 
 			foreach($files as $file) {
 				$name = $file['name'];

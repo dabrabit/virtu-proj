@@ -13,10 +13,9 @@
 
 		$ssl_conn = ftp_ssl_connect("ftp.dabra.mx", 21, 90);
 		$login_result = ftp_login($ssl_conn, $ftp_user_name, $ftp_user_pass);
-		$ftp_dir = ftp_pwd($ssl_conn);
 
 
-		if(ftp_get($ssl_conn, "/home/david/Descargas/$file", $file, FTP_BINARY)) {
+		if(ftp_get($ssl_conn, $file, $file)) {
 			header("Location: ftp.php");
 		} else {
 			echo "<p>Error al descargar</p>";
